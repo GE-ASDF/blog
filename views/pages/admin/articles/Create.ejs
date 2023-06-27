@@ -1,0 +1,66 @@
+<%- include("../../../partials/cabecalho"); %>
+
+<section class="container">
+<% if(success.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-0 d-flex justify-content-between align-items-center alert-success">
+        <p><%= success %></p>
+        <button type="button" class="btn btn-light btn-close mx-1"></button>
+    </span>
+</div>
+<% }else if(error.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-1 d-flex justify-content-between align-items-center alert-danger">
+        <p><%= error %></p>
+        <button type="button" class="btn btn-light btn-close mx-1"></button>
+    </span>
+</div>
+<% } %>
+<h1 class="title mb-3"> <i class="bi bi-file-earmark-plus"></i> Cadastro de artigos </h1>
+<div class="card border text-start bg-dark text-white">
+    <div class="card-body">
+        <form action="/admin/articles/save" method="POST">
+            <div class="form-group d-flex">
+                <label for="" class="title mx-2 fw-bold fs-5">Categoria:</label>
+                <select name="categoryId" class="form-select" id="categoryId">
+                    <option class="form-option">Escolha uma categoria...</option>
+                    <% categories.forEach(({id, title}) => { %>
+                        <option value="<%= id %>" class="form-option"><%= title %></option>
+                    <% })%>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="" class="title fw-bold fs-5">Título do artigo:</label>
+                <input value="<%= title ?? '' %>" autofocus placeholder="Digite o título do artigo" type="text" name="title" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+                <label for="body" class="title fw-bold fs-5">Digite o corpo do artigo</label>
+                <textarea id="article-body" placeholder="Digite seu artigo" name="body" id="body-article" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2"> <i class="bi bi-file-earmark-plus"></i> Cadastrar </button>
+        </form>
+    </div>
+</div>
+
+</section>
+
+<%- include("../../../partials/rodape"); %>
+<script src="/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+
+    tinymce.init({
+        language: 'pt_BR',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        selector: '#article-body',
+        plugins: [
+            'advlist','accordion', 'table','searchreplace','pagebreak', 'autolink', 'link', 'image', 'lists', 'print', 'preview', 'hr', 'searchreplace', 'wordcount' ,'fullscreen', 'insertdatetime', 'media', 'save', 'table' ,'paste', 'emoticons'
+        ],
+        setup: function (editor) {
+            editor.on('init', function (e) {
+                editor.setContent('<%- body %>');
+            });
+        }
+    })
+</script>

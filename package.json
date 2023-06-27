@@ -1,0 +1,29 @@
+{
+  "name": "projeto-blog",
+  "version": "1.0.0",
+  "description": "Um blog básico com painel administrativo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Anderson Souza",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect": "^3.7.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "flash": "^1.1.0",
+    "install": "^0.13.0",
+    "mysql2": "^3.4.2",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.32.1",
+    "slugify": "^1.6.6",
+    "socket.io": "^4.7.0"
+  }
+}

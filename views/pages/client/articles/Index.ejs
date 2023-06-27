@@ -1,0 +1,37 @@
+<%- include("../../../partials/cabecalhohome") %>
+
+<section id="main-blog" class="container">
+
+    <div class="card text-start">
+        <div class="card-header d-flex flex-column align-items-start">
+            <h1 class="card-title"><%= article.title %></h1>
+            <small>Postado em: <%= new Date(article.createdAt).toLocaleString('pt-Br') %></small>
+        </div>
+        <div class="card-body">
+        <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
+        <%- article.body %>
+      </div>
+    </div>
+
+</section>
+<section id="other-articles" class="container mt-4">
+    <% otherArticles.forEach(({title, slug, body, createdAt} )=>{ %>
+    <div class="card text-start">
+        <div class="card-header d-flex flex-column align-items-start">
+            <h4><%= title %></h4>
+            <small>Postado em: <%= new Date(createdAt).toLocaleString('pt-Br') %></small>
+        </div>
+      <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
+      <div class="card-body">
+        <!-- <p class"card-text"><%- body %></p> -->
+      </div>
+      <div class="card-footer d-flex flex-column justify-content-center align-items-start">
+        <a href="/<%= slug %>" class="btn btn-primary mb-2">Ver artigo</a>
+        <small><%= new Date(createdAt).toLocaleString('pt-Br') %></small>
+    </div>
+    </div>
+    <%})%>
+
+</section>
+
+<%- include("../../../partials/rodape") %>

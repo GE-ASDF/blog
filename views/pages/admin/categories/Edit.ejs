@@ -1,0 +1,35 @@
+<%- include("../../../partials/cabecalho"); %>
+
+<section class="container">
+<% if(success.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-0 d-flex justify-content-between align-items-center alert-success">
+        <p><%= success %></p>
+        <button type="button" class="btn btn-light btn-close mx-1"></button>
+    </span>
+</div>
+<% }else if(error.length > 0){ %>
+<div id="mensagem-informacional" class="form-group d-flex flex-column">
+    <span class="alert m-1 d-flex justify-content-between align-items-center alert-danger">
+        <p><%= error %></p>
+        <button type="button" class="btn btn-light btn-close mx-1"></button>
+    </span>
+</div>
+<% } %>
+<h1 class="title mb-3"> <i class="bi bi-file-earmark-plus"></i> Atualização de categorias </h1>
+<div class="card border text-start bg-dark text-white">
+    <div class="card-body">
+        <form onsubmit="verifyOnUpdate(event, this)" id="form-update-category" action="/admin/categories/update" method="POST">
+            <div class="form-group">
+                <label for="" class="title fw-bold fs-5">Título da categoria:</label>
+                <input value="<%= title ?? "" %>" autofocus placeholder="Digite o título da categoria" type="text" name="title" class="form-control">
+                <input value="<%= id ?? "" %>" type="hidden" name="id" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2"> <i class="bi bi-file-earmark-plus"></i> Atualizar </button>
+        </form>
+    </div>
+</div>
+
+</section>
+
+<%- include("../../../partials/rodape"); %>

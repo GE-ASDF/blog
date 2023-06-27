@@ -1,0 +1,35 @@
+@keyframes slidein {
+    from {
+      transform: translateX(-9000px);
+        transition: all 1s ease-in-out;
+    }
+  
+    to {
+      transform: translateX(5px);
+      transition: all 1s ease-in-out;
+    }
+  }
+/* #guia-perguntas{
+    position:relative;
+}
+#guia-perguntas:hover .detalhe{
+    height: 0.3125rem;
+}
+.detalhe{
+    display: block;
+    position:absolute;
+    width:50px;
+    height: 0px;
+    transition: all 0.4s ease-in-out;
+    background:linear-gradient(to bottom, rgb(170, 36, 228), rgbA(35, 35, 35, 0.1));
+    opacity: 1;
+} */
+
+#mensagem-informacional{
+    position: absolute;
+    top:20px;
+    right: 5px;
+    transition: all 0.5s ease-in-out;
+    animation: slidein 0.5s ease-in-out cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+    transition: all 1s ease-in-out;
+}

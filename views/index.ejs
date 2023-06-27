@@ -1,0 +1,49 @@
+<%- include("./partials/cabecalhohome") %>
+<ul class="navbar navbar-expand-lg">
+<% categories.forEach(({id, title, slug}) => {%>
+    <li class="p-2 navbar-item nav-link"><a href="#<%= slug %>" class="nav-link"><%= title %></a></li>
+<% }) %>
+</ul>
+<section id="main-blog" class="container">
+    <% if(error.length > 0){ %>
+    <div id="mensagem-informacional" class="form-group d-flex flex-column">
+        <span class="alert m-1 d-flex justify-content-between align-items-center alert-danger">
+            <p><%= error %></p>
+            <button type="button" class="btn btn-light btn-close mx-1"></button>
+        </span>
+    </div>
+    <% } %>
+    <div id="most-recent" style="height: 31.25rem;">
+        <div class="h-100 card text-start">
+            <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
+            <div class="card-body">
+                <h4 class="card-title"><%= mostRecent.title %></h4>
+            </div>
+            <div class="card-footer d-flex flex-column justify-content-center align-items-start">
+                <a href="/<%= mostRecent.slug %>" class="btn btn-primary mb-2">Ver artigo</a>
+                <small><%= new Date(mostRecent.createdAt).toLocaleString('pt-Br') %></small>
+            </div>
+        </div>
+    </div>
+
+    <div id="most-articles" class="d-grid">
+                
+        <div class="row">
+        <% articles.forEach(({id, title, body, slug,createdAt})=>{ %>
+            <div class="card text-start col-sm m-1">
+                <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
+                <div class="card-body">
+                    <h4 class="card-title"><%= title %></h4>
+                </div>
+                <div class="card-footer d-flex flex-column justify-content-center align-items-start">
+                    <a href="/<%= slug %>" class="btn btn-primary mb-2">Ver artigo</a>
+                    <small><%= new Date(createdAt).toLocaleString('pt-Br') %></small>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+
+</section>
+
+<%- include("./partials/rodape") %>
