@@ -23,22 +23,20 @@
         <thead>
             <tr class="text-center">
                 <td>Id</td>
-                <td>Título</td>
-                <td>Slug</td>
-                <td>Categoria</td>
+                <td>Nome</td>
+                <td>E-email</td>
                 <td>Ações</td>
             </tr>
         </thead>
         <tbody>
-            <% articles.forEach(({id, title, slug, category}) => { %> 
+            <% users.forEach(({id, name, email}) => { %> 
                 <tr>
                     <td class="text-center"><%= id %></td>
-                    <td><%= title %></td>
-                    <td><%= slug %></td>
-                    <td><%= category.title %></td>
+                    <td><%= name %></td>
+                    <td><%= email %></td>
                     <td class="d-flex justify-content" class="text-center">
-                        <a href="/admin/articles/edit/<%= id %>" class="btn mx-1 btn-primary"> <i class="bi bi-pencil-square"></i> Editar</a>
-                        <button onclick="setModalPropeties('/admin/articles/delete','POST','id','<%= id %>')" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-de-delecao"><i class="bi bi-x-lg"></i></button>
+                        <a href="/admin/users/edit/<%= id %>" class="btn mx-1 btn-primary"> <i class="bi bi-pencil-square"></i> Editar</a>
+                        <button onclick="setModalPropeties('/admin/users/delete','POST','id','<%= id %>')" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-de-delecao"><i class="bi bi-x-lg"></i></button>
                     </td>
                 </tr>    
             <%})%>

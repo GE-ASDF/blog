@@ -3,9 +3,10 @@ const router = express.Router();
 const Category = require("../../models/Category");
 const slugify = require("slugify");
 const {check, validationResult} = require("express-validator");
+const Auth = require("../../middlewares/Auth");
 
 // ROTAS GET
-router.get("/admin/categories", (req, res)=>{
+router.get("/admin/categories",Auth, (req, res)=>{
     Category.findAll().then((categories)=>{
 
         res.render("pages/admin/categories/Index", 
@@ -18,7 +19,7 @@ router.get("/admin/categories", (req, res)=>{
     })
 })
 
-router.get("/admin/categories/new", (req, res)=>{
+router.get("/admin/categories/new", Auth, (req, res)=>{
     res.render("pages/admin/categories/Create",{
         titlePage: "Cadastro de categorias",
         success: req.flash("success"),
@@ -26,7 +27,7 @@ router.get("/admin/categories/new", (req, res)=>{
     })
 })
 
-router.get("/admin/categories/edit/:id",
+router.get("/admin/categories/edit/:id",Auth,
 [
     check('id').notEmpty().isInt().trim().escape(),
 ],
@@ -59,7 +60,7 @@ router.get("/admin/categories/edit/:id",
 
 // ROTAS POSTS
 
-router.post("/admin/categories/save",[
+router.post("/admin/categories/save",Auth,[
     check('title').notEmpty().isLength({min: 4, max:255}).trim().escape(),
 ], (req, res)=>{
     const errors = validationResult(req);
@@ -86,7 +87,7 @@ router.post("/admin/categories/save",[
     })
 })
 
-router.post("/admin/categories/update",[
+router.post("/admin/categories/update",Auth,[
     check('title').notEmpty().isLength({min: 4, max:255}).trim().escape(),
     check('id').notEmpty().isInt().trim().escape(),
 ], (req, res)=>{
@@ -111,7 +112,7 @@ router.post("/admin/categories/update",[
     })
 })
 
-router.post("/admin/categories/delete", 
+router.post("/admin/categories/delete", Auth,
 [
     check('id').notEmpty().isInt().trim().escape(),
 ], (req, res)=>{

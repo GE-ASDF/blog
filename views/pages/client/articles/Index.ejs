@@ -8,8 +8,9 @@
             <small>Postado em: <%= new Date(article.createdAt).toLocaleString('pt-Br') %></small>
         </div>
         <div class="card-body">
-        <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
-        <%- article.body %>
+        <div>
+          <%- article.body %>
+        </div>
       </div>
     </div>
 

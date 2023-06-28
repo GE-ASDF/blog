@@ -33,3 +33,6 @@
     animation: slidein 0.5s ease-in-out cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
     transition: all 1s ease-in-out;
 }
+img{
+  max-width: 100%;
+}

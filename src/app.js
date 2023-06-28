@@ -3,9 +3,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT_EXPRESS || 3000;
 const body = require("body-parser");
+const cookieParser = require('cookie-parser');
 const flash = require("connect-flash");
 const session = require("express-session");
 const connection = require("../core/Model");
+const csurf = require("csurf");
 
 // Conexão com o banco de dados
 connection
@@ -21,6 +23,14 @@ app.use(session({
     secret: "flashlog",
     saveUninitialized: true,
     resave:true,
+    name: 'flashlog'
+}));
+
+app.use(session({
+    secret: "SESSION_LOGIN",
+    saveUninitialized: true,
+    resave:false,
+    name: "SESSION_LOGIN"
 }));
 
 app.use(body.urlencoded({extended: false}))

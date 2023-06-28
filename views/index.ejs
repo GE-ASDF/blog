@@ -1,9 +1,5 @@
 <%- include("./partials/cabecalhohome") %>
-<ul class="navbar navbar-expand-lg">
-<% categories.forEach(({id, title, slug}) => {%>
-    <li class="p-2 navbar-item nav-link"><a href="#<%= slug %>" class="nav-link"><%= title %></a></li>
-<% }) %>
-</ul>
+
 <section id="main-blog" class="container">
     <% if(error.length > 0){ %>
     <div id="mensagem-informacional" class="form-group d-flex flex-column">
@@ -13,35 +9,48 @@
         </span>
     </div>
     <% } %>
-    <div id="most-recent" style="height: 31.25rem;">
-        <div class="h-100 card text-start">
-            <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
-            <div class="card-body">
-                <h4 class="card-title"><%= mostRecent.title %></h4>
+    <div id="most-recent" class="d-grid" style="height:31.25rem;">
+        <div class="row">
+            <div class="col-md">
+                <div class="h-100 card text-start">
+                    <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
+                    <div class="card-body">
+                        <h4 class="card-title"><%= mostRecent.title %></h4>
+                    </div>
+                    <div class="card-footer d-flex flex-column justify-content-center align-items-start">
+                        <a href="/<%= mostRecent.slug %>" class="btn btn-primary mb-2">Ver artigo</a>
+                        <small><%= new Date(mostRecent.createdAt).toLocaleString('pt-Br') %></small>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer d-flex flex-column justify-content-center align-items-start">
-                <a href="/<%= mostRecent.slug %>" class="btn btn-primary mb-2">Ver artigo</a>
-                <small><%= new Date(mostRecent.createdAt).toLocaleString('pt-Br') %></small>
+            <div style="overflow-y: auto;max-height: 100%;height: 31.25rem;" class="col-sm-3">
+                <aside class="card text-start p-2 ">
+                    <h4 style="border-bottom: 1px solid #fff;" class="title">Categorias</h4>
+                    <ul class="navbar d-flex flex-column justify-content-start align-items-start">
+                        <% categories.forEach(({id, title, slug}) => {%>
+                            <li style="border-bottom: 1px solid #fff;" class="p-2 navbar-item nav-link"><a href="/category/<%= slug %>" style="display: block;" class="nav-link w-100"><%= title %></a></li>
+                        <% }) %>
+                    </ul>
+                </aside>
             </div>
         </div>
+
     </div>
 
-    <div id="most-articles" class="d-grid">
-                
-        <div class="row">
+    <div id="most-articles" class="d-flex flex-wrap">
         <% articles.forEach(({id, title, body, slug,createdAt})=>{ %>
-            <div class="card text-start col-sm m-1">
+            <div class="card text-start m-3">
                 <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title"> -->
                 <div class="card-body">
-                    <h4 class="card-title"><%= title %></h4>
+                    <h4 class="card-title" ><%= title %></h4>
                 </div>
                 <div class="card-footer d-flex flex-column justify-content-center align-items-start">
+                    <h1></h1>
                     <a href="/<%= slug %>" class="btn btn-primary mb-2">Ver artigo</a>
                     <small><%= new Date(createdAt).toLocaleString('pt-Br') %></small>
                 </div>
             </div>
             <% }) %>
-        </div>
     </div>
 
 </section>
